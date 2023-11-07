@@ -74,7 +74,7 @@ public class MazeGenerator extends JPanel implements KeyListener {
         if (isEnd) {
             g.setColor(Color.BLUE); // 设置绘图颜色为蓝色
             g.fillRect((maze[0].length - 1) * cellSize, (maze.length - 1) * cellSize, cellSize, cellSize); // 绘制终点
-            JOptionPane.showMessageDialog(this, "成功!"); // 显示成功消息框
+            JOptionPane.showMessageDialog(this, "恭喜你，成功通关!"); // 显示成功消息框
             System.exit(0); // 退出程序
         }
 
