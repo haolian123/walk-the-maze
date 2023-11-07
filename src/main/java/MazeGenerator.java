@@ -2,30 +2,31 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+//该类用于绘制迷宫
 public class MazeGenerator extends JPanel implements KeyListener {
 
     // 可移动块的坐标
     private int x = 1;
     private int y = 1;
+
     // 是否到达终点
     private boolean isEnd = false;
     // 用二维数组表示迷宫
     private static int[][] maze;
 
-    static int Offset = 50; // 设置偏移量
-    public static void actionFunction(int difficulty,JFrame mainFrame){
-        maze=MazeFactory.createMaze(difficulty);
-        mainFrame.setVisible(false);
+    // 偏移量
+    private static int Offset = 50;
 
+    //初始化迷宫
+    private void initMaze(int difficulty){
+        maze=MazeFactory.createMaze(difficulty);
     }
 
-    // 构造函数，设置布局
-    public MazeGenerator(int difficulty) {
-//        selectWindow();
-        maze=MazeFactory.createMaze(difficulty);
-
-        //设置画图的偏移量
+    private void initFrame(int difficulty){
+        difficulty=Math.min(difficulty,2);
+        //初始化偏移量
         Offset=50+difficulty*20;
+        //设置画图的偏移量
         int width=250*Math.min(3,difficulty+1)+150;
         int height=250*Math.min(3,difficulty+1)+100;
         JFrame frame = new JFrame("走迷宫"); // 创建窗口对象
@@ -35,6 +36,15 @@ public class MazeGenerator extends JPanel implements KeyListener {
         frame.add(this); // 将当前对象添加到窗口
         frame.setVisible(true); // 设置窗口可见
         frame.addKeyListener(this); // 添加键盘事件监听器
+    }
+
+    public MazeGenerator(int difficulty) {
+        //初始化迷宫
+        initMaze(difficulty);
+
+        //初始化窗口
+        initFrame(difficulty);
+
     }
 
     // 画图

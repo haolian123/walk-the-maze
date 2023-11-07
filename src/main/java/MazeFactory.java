@@ -2,7 +2,7 @@ abstract class MazeCreator {
 
     abstract public int [][] getMaze();
 }
-
+//简单难度
 class EasyMaze extends MazeCreator{
     protected   int[][] maze ={
             {2, 2, 2, 2, 2, 2, 2, 2, 2},
@@ -20,6 +20,8 @@ class EasyMaze extends MazeCreator{
         return maze;
     }
 }
+
+//中等难度
 class MediumMaze extends MazeCreator{
     private final int[][] maze = {
             {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
@@ -41,6 +43,8 @@ class MediumMaze extends MazeCreator{
         return maze;
     }
 }
+
+//困难难度
 class HardMaze extends MazeCreator{
 
     private final int[][] maze = {
@@ -72,7 +76,7 @@ class HardMaze extends MazeCreator{
     }
 }
 
-
+//迷宫工厂
 public class MazeFactory{
     static final int EASY=0;
     static final int MEDIUM=1;
