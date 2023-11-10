@@ -24,7 +24,7 @@ public class Main {
 
     private static void initFrame(){
         //设置窗口参数
-        mainFrame= new JFrame("开始");
+        mainFrame= new JFrame("走迷宫");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setSize(500, 500);
         mainFrame.setLocation(600,300);

@@ -53,8 +53,8 @@ public class MazeGenerator extends JPanel implements KeyListener {
         super.paintComponent(g); // 调用父类的绘制方法
 
         int cellSize = 30; // 设置单元格大小
-        g.setColor(Color.YELLOW); // 设置绘图颜色为黄色
-        g.fillRect((maze[0].length - 2) * cellSize + Offset, (maze.length - 2) * cellSize + Offset, cellSize, cellSize); // 绘制终点
+
+        int endX=0,endY=0;
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze[i].length; j++) {
                 if (maze[i][j] == 1) {
@@ -65,25 +65,31 @@ public class MazeGenerator extends JPanel implements KeyListener {
                     g.setColor(Color.GRAY); // 设置绘图颜色为灰色
                     g.fillRect(j * cellSize + Offset, i * cellSize + Offset, cellSize, cellSize); // 绘制迷宫外部
                 }
+                if(maze[i][j]==-1){
+                    endX=j;
+                    endY=i;
+                    g.setColor(Color.YELLOW); // 设置绘图颜色为黄色
+                    g.fillRect(j * cellSize + Offset, i * cellSize + Offset, cellSize, cellSize); // 绘制迷宫外部
+                }
             }
         }
 
         g.setColor(Color.BLUE); // 设置绘图颜色为蓝色
         g.fillRect(x * cellSize + Offset, y * cellSize + Offset, cellSize, cellSize); // 绘制当前位置
 
-        if (isEnd) {
+        if(isEnd){
             g.setColor(Color.BLUE); // 设置绘图颜色为蓝色
-            g.fillRect((maze[0].length - 1) * cellSize, (maze.length - 1) * cellSize, cellSize, cellSize); // 绘制终点
+            g.fillRect(x * cellSize, y * cellSize, cellSize, cellSize); // 绘制终点
             JOptionPane.showMessageDialog(this, "恭喜你，成功通关!"); // 显示成功消息框
             System.exit(0); // 退出程序
         }
-
-        if (x == maze[0].length - 2 && y == maze.length - 2) {
+        if(x==endX&&y==endY){
             isEnd = true; // 标记到达终点
             g.setColor(Color.BLUE); // 设置绘图颜色为蓝色
             g.fillRect(x * cellSize + Offset, y * cellSize + Offset, cellSize, cellSize); // 绘制当前位置
             repaint(); // 重新绘制
         }
+
     }
 
     // 监听键盘
